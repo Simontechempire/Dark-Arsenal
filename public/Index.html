@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DARK ARSENAL | LINKER</title>
+    <style>
+        body { background: #000; color: #f00; font-family: 'Courier New'; text-align: center; padding: 50px; }
+        input { padding: 15px; width: 300px; background: #111; color: #f00; border: 2px solid #f00; outline: none; }
+        button { padding: 15px 30px; background: #f00; color: #000; font-weight: bold; cursor: pointer; border: none; }
+        #code { font-size: 40px; margin-top: 20px; color: #fff; text-shadow: 0 0 10px #f00; }
+    </style>
+</head>
+<body>
+    <h1>DARK ARSENAL SYSTEM</h1>
+    <input type="text" id="phone" placeholder="Phone Number (e.g 234...)">
+    <button onclick="link()">GENERATE 8-DIGIT CODE</button>
+    <div id="code"></div>
+    <script>
+        async function link() {
+            const phone = document.getElementById('phone').value;
+            const res = await fetch(`/pair?phone=${phone}`);
+            const data = await res.json();
+            document.getElementById('code').innerText = data.code || data.error;
+        }
+    </script>
+</body>
+</html>
